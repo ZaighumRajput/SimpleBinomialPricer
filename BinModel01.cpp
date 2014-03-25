@@ -22,6 +22,7 @@ int GetInputData(double& S0,
 				 double& U, double& D, double& R)
 {
 	//entering data
+	
 	cout << "Enter S0: "; cin >> S0;
 	cout << "Enter U: "; cin >> U;
 	cout << "Enter D: "; cin >> D;
@@ -41,7 +42,7 @@ int GetInputData(double& S0,
 	}
 
 	//Checking for arbitrage
-	if (R>=D || R<=D)
+	if (R>=U || R<=D)
 	{
 		cout << "Arbitrage exists" << endl;
 		cout << "Terminating program" << endl;

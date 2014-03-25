@@ -8,10 +8,12 @@
 int GetInputData(int& N, double& K);
 
 double PriceByCRR(double S0, double U, double D,
-				  double R, int N, double K);
+				  double R, int N, double K, bool flag);
 
 //computing call payoff
 double CallPayoff(double z, double K);
+
+unsigned nChoosek( unsigned n, unsigned k );
 
 #endif
 
