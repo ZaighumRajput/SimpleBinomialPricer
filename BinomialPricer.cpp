@@ -28,7 +28,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		 << PriceByCRR(S0,U,D,R,N,K, flag)
 	     << endl << endl;
 		 
-
+	char  d = 0;
 	char c = 0;
 	cin >> c;
 		 return EXIT_SUCCESS;
