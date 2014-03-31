@@ -85,6 +85,13 @@ double CallPayoff(double z, double K)
 	return 0.0;
 }
 
+double PutPayoff(double z, double K)
+{
+	if (z>K) return K-z;
+	return 0.0;
+}
+
+
 
 
 //Ben Voigt

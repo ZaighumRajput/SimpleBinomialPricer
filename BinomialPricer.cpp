@@ -25,7 +25,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	cout << "0 for Iterative, 1 for CRR formula: "; cin >> flag;
 	cout << "European call option price = "
-		 << PriceByCRR(S0,U,D,R,N,K, flag)
+		 << PriceByCRR(S0,U,D,R,N,K, CallPayoff)
+	     << endl << endl;
+
+		cout << "0 for Iterative, 1 for CRR formula: "; cin >> flag;
+	cout << "European put option price = "
+		 << PriceByCRR(S0,U,D,R,N,K, PutPayoff)
 	     << endl << endl;
 		 
 	char  d = 0;
