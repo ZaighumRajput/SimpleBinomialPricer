@@ -23,7 +23,7 @@ int GetInputData(int& N, double& K)
 
 
 double PriceByCRR(double S0, double U, double D, 
-					double R, int N, double K, bool flag)
+					double R, int N, double K, double (*Payoff) (double S, double K),bool flag)
 {
 	typedef std::vector<double> double_vec_t;
 	
@@ -48,7 +48,7 @@ double PriceByCRR(double S0, double U, double D,
 		for(int i=0; i<=N; i++)
 		{
           
-		  price +=   nChoosek(N,i)*pow(q,i)*pow(1-q,N-i)*CallPayoff(S(S0,U,D,N,i),K);
+		  price +=   nChoosek(N,i)*pow(q,i)*pow(1-q,N-i)*Payoff(S(S0,U,D,N,i),K);
           
 		}
 		return price/(pow(1+R,N));
@@ -56,19 +56,19 @@ double PriceByCRR(double S0, double U, double D,
 	}
 
 
-	else
-	{
+else
+{
 
-	for(int i=0; i<=N; i++)
-	{
-		Price.at(i) = CallPayoff(S(S0,U,D,N,i),K);
-	}
+for(int i=0; i<=N; i++)
+{
+	Price.at(i) = CallPayoff(S(S0,U,D,N,i),K);
+}
 
 
-	for (int n=N-1; n>=0; n--)
+for (int n=N-1; n>=0; n--)
+{
+	for (int i=0; i<=n; i++)
 	{
-		for (int i=0; i<=n; i++)
-		{
 		Price.at(i) = (q*Price.at(i+1)+(1-q)*Price.at(i))/(1+R);
 		}
 	}
@@ -79,16 +79,16 @@ return Price.at(0);
 
 
 
-double CallPayoff(double z, double K)
+
+double CallPayoff(double S, double K)
 {
-	if (z>K) return z-K;
-	return 0.0;
+	 return std::max(0.0, S-K);
+	
 }
 
-double PutPayoff(double z, double K)
+double PutPayoff(double S, double K)
 {
-	if (z>K) return K-z;
-	return 0.0;
+	return std::max(0.0, K-S);
 }
 
 
